@@ -17,12 +17,11 @@ def do_deploy(archive_path):
     new_path = "/data/web_static/releases/{}".format(new_file)[0:-5]
     put(archive_path, "/tmp/")
     run("mkdir -p {}".format(new_path))
-    run("tar -xzf /tmp/{} -C {}".format(new_path, new_file))
+    run("tar -xzf /tmp/{} -C {}".format(new_file, new_path))
     run("rm /tmp/{}".format(new_file))
     run("mv {}/web_static/* {}".format(new_path, new_path))
     run("rm -rf {}/web_static".format(new_path))
     run("rm -rf /data/web_static/current")
-    run("ln -s {} /data/web_static/releases{} /data/\
-    web_static/current".format(new_path, new_file))
+    run("ln -s {} /data/web_static/current".format(new_path))
     print ("New version deployed!")
     return True
