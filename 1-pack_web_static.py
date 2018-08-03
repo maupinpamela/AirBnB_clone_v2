@@ -6,11 +6,11 @@ from datetime import datetime
 
 
 def do_pack():
-    local("sudo mkdir /versions/")
+    local("sudo mkdir -p versions")
     dt = datetime.now().strftime("%y%m%d%h%m%s")
-    prints = "versions.web_static{}.tgz".format(dt)
+    prints = "versions/web_static{}.tgz".format(dt)
     var = local("sudo tar -cvzf {} web_static".format(prints))
-    if var.success:
+    if var.succeeded:
         return dt
     else:
         return "None"
