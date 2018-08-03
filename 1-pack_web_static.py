@@ -13,7 +13,7 @@ def do_pack():
     if var.success:
         return dt
     else:
-        return None
+        return "None"
 
 
 if __name__ == "__main__":
