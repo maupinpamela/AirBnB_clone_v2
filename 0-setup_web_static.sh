@@ -3,11 +3,12 @@
 
 sudo apt-get update -y
 sudo apt-get install nginx -y
-mkdir -p /data/web_static/releases/test/
-mkdir -p /data/web_static/shared/
+sudo mkdir -p /data/web_static/releases/test/
+sudo mkdir -p /data/web_static/shared/
 echo "Holberton" | sudo tee /data/web_static/releases/test/index.html
-ln -sf /data/web_static/releases/test/ /data/web_static/current
-chown -R ubuntu:ubuntu /data/
+sudo rm -rf /data/web_static/current
+ln -s /data/web_static/releases/test/ /data/web_static/current
+sudo chown -R ubuntu:ubuntu /data/
 locations="\\\nlocation /hbnb_static/ {alias /data/web_static/current/;}"
-sed -i "37i $locations" /etc/nginx/sites-available/default
+sudo sed -i "37i $locations" /etc/nginx/sites-available/default
 sudo service nginx restart
