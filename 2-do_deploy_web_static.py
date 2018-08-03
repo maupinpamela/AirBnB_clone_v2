@@ -14,12 +14,8 @@ def do_deploy(archive_path):
     if archive_path is None:
         return False
     new_file = archive_path[9:]
-    new_path = "/data/web_static/releases/{}".format(new_file)[0:-4]
-    print(archive_path)
-    print(new_file[0:-4])
-    print(new_file)
-    print(new_path)
-
+    new_path = "/data/web_static/releases/{}".\
+               format(new_file)[0:-4]
     put(archive_path, "/tmp/")
     run("mkdir -p {}/".format(new_path))
     run("tar -xzf /tmp/{} -C {}/".format(new_file, new_path))
